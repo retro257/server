@@ -1,0 +1,39 @@
+<html>
+    <head>
+        <title>forum</title>
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+    </head>
+    <body>
+        <nav class="nav">
+            {% if not requests.user.is_authenticated %}
+                <a href="http://127.0.0.1:8000/invite"><button class="nav_btn">Войти</button></a>
+                <a href="http://127.0.0.1:8000/reg"><button class="nav_btn">Зарегистрироваться</button></a>
+                <input type="text" placeholder="Введите запрос">
+                <h1><a href="http://127.0.0.1:8000/main">web-forum</a></h1> 
+            {% else %}
+                <h1>{{ requests.user }}</h1>
+                <a href="http://127.0.0.1:8000/invite"><button class="nav_btn">Войти</button></a>
+                <a href="http://127.0.0.1:8000/reg"><button class="nav_btn">Зарегистрироваться</button></a>
+                <input type="text" placeholder="Введите запрос">
+                <h1><a href="http://127.0.0.1:8000/main">web-forum</a></h1> 
+            {% endif %}
+        </nav>
+        <section>
+            <div>
+                
+                <h1>{{ question.tittle }}</h1>
+                <h2>{{ question.content_text }}</h2>
+                {% for i in answers %}
+                    {{ i.author }}
+                    {{ i.text }}<br>
+                {% endfor %}
+                <form action="http://127.0.0.1:8000/question/{{ number }}" method="POST">
+                    {% csrf_token %}
+                    {{ form }}
+                    <input type="submit" value="Добавить ответ">
+                </form>
+            </div>
+            <a href="http://127.0.0.1:8000/add_question"><button class="add_quest">Добавить вопрос</button></a>
+        </section>
+    </body>
+</html>

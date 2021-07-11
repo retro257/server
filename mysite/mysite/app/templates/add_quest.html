@@ -1,0 +1,22 @@
+<html>
+    <head>
+        <title>forum</title>
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+    </head>
+    <body>
+        <nav class="nav">
+            <a href="invite.html"><button class="nav_btn">Войти</button></a>
+            <a href="reg.html"><button class="nav_btn">Зарегистрироваться</button></a>
+            <input type="text" placeholder="Введите запрос">
+            <h1><a href="http://127.0.0.1:8000/main">web-forum</a></h1>
+        </nav>
+        <section>
+            <form action="http://127.0.0.1:8000/add_question" method="POST">
+                {% csrf_token %}
+                {{ form }}
+                <input type="submit" value="Добавить вопрос">
+            </form>
+            <a href="add_quest.html"><button class="add_quest">Добавить вопрос</button></a>
+        </section>
+    </body>
+</html>
